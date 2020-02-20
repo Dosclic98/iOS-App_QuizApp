@@ -34,9 +34,10 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //presentingViewController?.dismiss(animated: true, completion: nil)
         qst.qstInitializer()
         printQstNum(currQstIndx + 1)
-        printScore(currScore)
+        updateScore(currScore)
         setQstAns(qst.getQst(currQstIndx))
     }
     
@@ -58,18 +59,93 @@ class QuestionViewController: UIViewController {
     
     @IBAction func checkAct(_ sender: Any) {
         let qstAns = qst.getQst(currQstIndx)
-        if(qstAns.type == QstType.SAqst) {
-            
-        } else if(qstAns.type == QstType.MAqst) {
-            
+        if(qstAns.type == QstType.SAqst || qstAns.type == QstType.MAqst) {
+            if(somethingSelected()) {
+                if(rightAnsw(qstAns.correct)) {
+                    currScore += 1
+                }
+                updateScore(currScore);
+                disableAnsCheckBtn()
+            } else {
+                showToast(message: "Seleziona una risposta prima di verificare", font: UIFont.systemFont(ofSize: 20))
+            }
         } else if(qstAns.type == QstType.OAqst) {
-
+            let answer: String? = openAns.text
+            if(answer == "") {
+                showToast(message: "Inserisci una risposta prima di controllarla", font: UIFont.systemFont(ofSize: 20))
+            } else {
+                if(openQstRight(answer!, qstAns.answ)) {
+                    currScore += 1
+                }
+                updateScore(currScore);
+                disableAnsCheckBtn()
+            }
+            
         } else {
             print("Malformed question")
         }
     }
     
     @IBAction func nextAct(_ sender: Any) {
+        
+    }
+    
+    func rightAnsw(_ rightAnsw: [Int]) -> Bool {
+        var allRightSel: Bool = true
+        var onlyRightSel: Bool = true
+        // Controlla se tutte le risposte giuste sono state selezionate
+        for i in rightAnsw {
+            if(!selected[i]) {
+                colorAnsBtn(i, UIColor.systemYellow)
+                allRightSel = false
+            }
+        }
+        
+        // Controlla se solo le risposte giuste sono segnate
+        var isRight = false
+        for i in 0...selected.count - 1 {
+            isRight = false
+            for j in rightAnsw {
+                if(i == j) {
+                    isRight = true
+                    if(selected[i]) {
+                        colorAnsBtn(i, UIColor.systemGreen)
+                    }
+                }
+            }
+            if(!isRight && selected[i]) {
+                colorAnsBtn(i, UIColor.systemRed)
+                onlyRightSel = false
+            }
+        }
+        
+        return allRightSel && onlyRightSel
+    }
+    
+    func openQstRight(_ answ: String,_ rightAnsw: [String]) -> Bool {
+        for strAns in rightAnsw {
+            if(answ == strAns) {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func colorAnsBtn(_ index: Int,_ color: UIColor) {
+        let defaultColor: UIColor = UIColor.black
+        if(index == 0) {
+            firstAns.backgroundColor = color
+            firstAns.setTitleColor(defaultColor, for: .normal)
+        } else if(index == 1) {
+            secAns.backgroundColor = color
+            secAns.setTitleColor(defaultColor, for: .normal)
+        } else if(index == 2) {
+            thirdAns.backgroundColor = color
+            thirdAns.setTitleColor(defaultColor, for: .normal)
+        } else if(index == 3) {
+            fourthAns.backgroundColor = color
+            fourthAns.setTitleColor(defaultColor, for: .normal)
+        }
     }
     
     func setQstAns(_ qstAns: QstAnsw) {
@@ -120,6 +196,17 @@ class QuestionViewController: UIViewController {
         openAns.isEnabled = true
     }
     
+    func disableAnsCheckBtn() {
+        firstAns.isEnabled = false
+        secAns.isEnabled = false
+        thirdAns.isEnabled = false
+        fourthAns.isEnabled = false
+        
+        openAns.isEnabled = false
+        
+        checkBtn.isEnabled = false
+    }
+    
     func selUnsel(_ index: Int) {
         if(!selected[index]) {
             selected[index] = true
@@ -146,11 +233,20 @@ class QuestionViewController: UIViewController {
         }
     }
     
+    func somethingSelected() -> Bool {
+        for i in 0...3 {
+            if(selected[i]) {
+                return true
+            }
+        }
+        return false
+    }
+    
     func printQstNum(_ qstNum: Int) {
         numbQstLab.text = String(qstNum) + "/" + String(qst.qstNumber())
     }
     
-    func printScore(_ score: Int) {
+    func updateScore(_ score: Int) {
         scoreLab.text = "Score: " + String(score)
     }
 
@@ -160,9 +256,10 @@ extension UIViewController {
 
 func showToast(message : String, font: UIFont) {
 
-    let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75, y: self.view.frame.size.height-100, width: 150, height: 35))
+    let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height - 150, width: 300, height: 60))
     toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
     toastLabel.textColor = UIColor.white
+    toastLabel.numberOfLines = 2
     toastLabel.font = font
     toastLabel.textAlignment = .center;
     toastLabel.text = message

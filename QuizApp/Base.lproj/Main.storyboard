@@ -10,7 +10,7 @@
         <!--Question View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="QuestionViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="qstStoryId" id="BYZ-38-t0r" customClass="QuestionViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,6 +179,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="VrH-Ub-DrJ"/>
                     <connections>
                         <outlet property="checkBtn" destination="HsF-4g-i7I" id="6ZC-kV-5Sz"/>
                         <outlet property="firstAns" destination="JDc-SV-N2I" id="GDz-Xg-cp1"/>
@@ -262,7 +263,7 @@
                         <viewLayoutGuide key="safeArea" id="dQP-2e-1Rj"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="questionActSegue" id="HAB-jn-D6a"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="questionActSegue" customClass="ReplaceSegue" customModule="QuizApp" customModuleProvider="target" id="HAB-jn-D6a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HMQ-oY-2eD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
