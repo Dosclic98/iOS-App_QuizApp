@@ -38,14 +38,14 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question goes here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pph-Bd-jYT">
-                                        <rect key="frame" x="0.0" y="197" width="374" height="36"/>
+                                        <rect key="frame" x="0.0" y="179.5" width="374" height="36"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bpe-BA-TCN">
-                                        <rect key="frame" x="0.0" y="394" width="374" height="197"/>
+                                        <rect key="frame" x="0.0" y="358.5" width="374" height="250"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDc-SV-N2I" customClass="RoundButton" customModule="QuizApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="38"/>
@@ -63,6 +63,9 @@
                                                         <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="firstAnsSel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DS6-qF-FhA"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqV-HD-NSN" customClass="RoundButton" customModule="QuizApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="53" width="374" height="38"/>
@@ -80,6 +83,9 @@
                                                         <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="secAnsSel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VS4-XX-h2s"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQv-pE-i2x" customClass="RoundButton" customModule="QuizApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="106" width="374" height="38"/>
@@ -97,6 +103,9 @@
                                                         <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="thirdAnsSel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aMO-qM-wIN"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avn-ZH-JMD" customClass="RoundButton" customModule="QuizApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="159" width="374" height="38"/>
@@ -114,7 +123,15 @@
                                                         <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="fourthAnsSel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="99K-96-vQd"/>
+                                                </connections>
                                             </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7tg-6O-9ai">
+                                                <rect key="frame" x="0.0" y="212" width="374" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="orS-X8-ywc">
@@ -130,6 +147,9 @@
                                                         <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="checkAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Apq-jB-IEj"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cT0-Gp-fxl" customClass="RoundButton" customModule="QuizApp" customModuleProvider="target">
                                                 <rect key="frame" x="197" y="0.0" width="177" height="36"/>
@@ -141,6 +161,9 @@
                                                         <real key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="nextAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MN2-dM-mNS"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -156,6 +179,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="checkBtn" destination="HsF-4g-i7I" id="6ZC-kV-5Sz"/>
+                        <outlet property="firstAns" destination="JDc-SV-N2I" id="GDz-Xg-cp1"/>
+                        <outlet property="fourthAns" destination="Avn-ZH-JMD" id="7LW-eK-ndf"/>
+                        <outlet property="nextBtn" destination="cT0-Gp-fxl" id="Nf5-hA-oub"/>
+                        <outlet property="numbQstLab" destination="qvf-BL-4wA" id="MHw-f0-Bzi"/>
+                        <outlet property="openAns" destination="7tg-6O-9ai" id="hpm-XV-aOE"/>
+                        <outlet property="qstLab" destination="Pph-Bd-jYT" id="x7K-4x-Xai"/>
+                        <outlet property="scoreLab" destination="5pV-cq-wwQ" id="2R5-Ij-U6r"/>
+                        <outlet property="secAns" destination="KqV-HD-NSN" id="Fn4-pI-aPc"/>
+                        <outlet property="thirdAns" destination="RQv-pE-i2x" id="Xl6-g7-nCZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -170,17 +205,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XSi-3b-hXO">
-                                <rect key="frame" x="40" y="368.5" width="334" height="159"/>
+                                <rect key="frame" x="40" y="358.5" width="334" height="179"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Benvenuto in QuizApp" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCC-Vu-o7r">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="91"/>
-                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Benvenuto in QuizApp" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCC-Vu-o7r" customClass="RoundLabel" customModule="QuizApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="111"/>
+                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="40"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0c8-C1-jQD">
-                                        <rect key="frame" x="0.0" y="111" width="334" height="48"/>
+                                        <rect key="frame" x="0.0" y="131" width="334" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="Inizia"/>
                                         <connections>
