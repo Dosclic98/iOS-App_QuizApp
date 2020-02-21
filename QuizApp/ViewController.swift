@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         // self.performSegue(withIdentifier: "questionActSegue", sender: self)
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "qstStoryId") as! QuestionViewController
+        nextViewController.modalPresentationStyle = .fullScreen
         self.present(nextViewController, animated:true, completion:nil)
     }
     

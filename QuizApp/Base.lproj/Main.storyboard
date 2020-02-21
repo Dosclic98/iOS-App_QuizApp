@@ -38,14 +38,19 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question goes here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pph-Bd-jYT">
-                                        <rect key="frame" x="0.0" y="179.5" width="374" height="36"/>
+                                        <rect key="frame" x="0.0" y="148.5" width="374" height="36"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7tg-6O-9ai">
+                                        <rect key="frame" x="0.0" y="296.5" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="bpe-BA-TCN">
-                                        <rect key="frame" x="0.0" y="358.5" width="374" height="250"/>
+                                        <rect key="frame" x="0.0" y="443" width="374" height="197"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDc-SV-N2I" customClass="RoundButton" customModule="QuizApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="38"/>
@@ -127,11 +132,6 @@
                                                     <action selector="fourthAnsSel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="99K-96-vQd"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7tg-6O-9ai">
-                                                <rect key="frame" x="0.0" y="212" width="374" height="38"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="orS-X8-ywc">
@@ -263,7 +263,7 @@
                         <viewLayoutGuide key="safeArea" id="dQP-2e-1Rj"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="questionActSegue" customClass="ReplaceSegue" customModule="QuizApp" customModuleProvider="target" id="HAB-jn-D6a"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="questionActSegue" customClass="ReplaceSegue" customModule="QuizApp" customModuleProvider="target" id="HAB-jn-D6a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HMQ-oY-2eD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

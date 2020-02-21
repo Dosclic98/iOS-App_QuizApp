@@ -34,7 +34,7 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //presentingViewController?.dismiss(animated: true, completion: nil)
+        setKeyboardHideTap()
         qst.qstInitializer()
         printQstNum(currQstIndx + 1)
         updateScore(currScore)
@@ -158,6 +158,7 @@ class QuestionViewController: UIViewController {
             fourthAns.setTitle(qstAns.answ[3], for: .normal)
         } else if(qstAns.type == QstType.OAqst) {
             showEnabOpQstElem()
+            openAns.placeholder = "Scrivi la risposta qui..."
             qstLab.text = qstAns.qst
         } else {
             print("Malformed question")
@@ -249,6 +250,11 @@ class QuestionViewController: UIViewController {
     func updateScore(_ score: Int) {
         scoreLab.text = "Score: " + String(score)
     }
+    
+    func setKeyboardHideTap() {
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(tap)
+    }
 
 }
 
@@ -272,4 +278,7 @@ func showToast(message : String, font: UIFont) {
     }, completion: {(isCompleted) in
         toastLabel.removeFromSuperview()
     })
-} }
+    
+}
+    
+}
