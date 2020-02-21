@@ -12,6 +12,8 @@ import UIKit
 var qst = Questions()
 var currQstIndx = 0
 var currScore = 0
+var correctAnsSound: SoundPlayer = SoundPlayer(named: "correctAns")
+var wrongAnsSound: SoundPlayer = SoundPlayer(named: "wrongAns")
 
 var selected: [Bool] = [false, false, false, false]
 
@@ -41,21 +43,13 @@ class QuestionViewController: UIViewController {
         setQstAns(qst.getQst(currQstIndx))
     }
     
-    @IBAction func firstAnsSel(_ sender: Any) {
-        selUnsel(0)
-    }
+    @IBAction func firstAnsSel(_ sender: Any) { selUnsel(0) }
     
-    @IBAction func secAnsSel(_ sender: Any) {
-        selUnsel(1)
-    }
+    @IBAction func secAnsSel(_ sender: Any) { selUnsel(1) }
     
-    @IBAction func thirdAnsSel(_ sender: Any) {
-        selUnsel(2)
-    }
+    @IBAction func thirdAnsSel(_ sender: Any) { selUnsel(2) }
     
-    @IBAction func fourthAnsSel(_ sender: Any) {
-        selUnsel(3)
-    }
+    @IBAction func fourthAnsSel(_ sender: Any) { selUnsel(3) }
     
     @IBAction func checkAct(_ sender: Any) {
         let qstAns = qst.getQst(currQstIndx)
@@ -63,6 +57,9 @@ class QuestionViewController: UIViewController {
             if(somethingSelected()) {
                 if(rightAnsw(qstAns.correct)) {
                     currScore += 1
+                    correctAnsSound.play()
+                } else {
+                    wrongAnsSound.play()
                 }
                 updateScore(currScore);
                 disableAnsCheckBtn()
@@ -76,6 +73,9 @@ class QuestionViewController: UIViewController {
             } else {
                 if(openQstRight(answer!, qstAns.answ)) {
                     currScore += 1
+                    correctAnsSound.play()
+                } else {
+                    wrongAnsSound.play()
                 }
                 updateScore(currScore);
                 disableAnsCheckBtn()
@@ -125,10 +125,16 @@ class QuestionViewController: UIViewController {
     func openQstRight(_ answ: String,_ rightAnsw: [String]) -> Bool {
         for strAns in rightAnsw {
             if(answ == strAns) {
+                colorAnsField(UIColor.systemGreen)
                 return true
             }
         }
+        colorAnsField(UIColor.systemRed)
         return false
+    }
+    
+    func colorAnsField(_ color: UIColor) {
+        openAns.backgroundColor = color
     }
     
     func colorAnsBtn(_ index: Int,_ color: UIColor) {
@@ -255,7 +261,7 @@ class QuestionViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
-
+    
 }
 
 extension UIViewController {

@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     }
 
     @IBAction func test(_ sender: Any) {
-        // self.performSegue(withIdentifier: "questionActSegue", sender: self)
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "qstStoryId") as! QuestionViewController
         nextViewController.modalPresentationStyle = .fullScreen
