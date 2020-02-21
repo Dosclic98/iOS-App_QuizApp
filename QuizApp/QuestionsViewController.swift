@@ -31,6 +31,7 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var fourthAns: RoundButton!
     @IBOutlet weak var openAns: UITextField!
     
+    @IBOutlet weak var restartBtn: RoundButton!
     @IBOutlet weak var checkBtn: RoundButton!
     @IBOutlet weak var nextBtn: RoundButton!
     
@@ -86,8 +87,88 @@ class QuestionViewController: UIViewController {
         }
     }
     
+    @IBAction func restartAct(_ sender: Any) {
+        enableScoreQstLab()
+        qstLab.backgroundColor = UIColor.white
+        nextBtn.setTitle("Prossima", for: .normal)
+        currQstIndx = 0
+        currScore = 0
+        printQstNum(currQstIndx + 1)
+        updateScore(currScore)
+        resetSelected()
+        unselectAllBtn()
+        setQstAns(qst.getQst(currQstIndx))
+    }
+    
     @IBAction func nextAct(_ sender: Any) {
+        if(!checkBtn.isEnabled) {
+            currQstIndx += 1
+            printQstNum(currQstIndx + 1)
+            if(currQstIndx == qst.qstNumber()) {
+                // siamo oltre la fine, si mostra il risultato e si
+                // propone di ricominciare
+                showEnableRestartBtn()
+                disableAllAnsCounters()
+                qstLab.backgroundColor = UIColor.systemOrange
+                qstLab.text = "Pinteggio finale: " + String(currScore)
+            }
+            else if(currQstIndx <= (qst.qstNumber() - 1)) {
+                if(currQstIndx == (qst.qstNumber() - 1)) {
+                    nextBtn.setTitle("Fine", for: .normal)
+                }
+                resetSelected()
+                unselectAllBtn()
+                setQstAns(qst.getQst(currQstIndx))
+            }
+        } else {
+            showToast(message: "Controlla la domanda prima di procedere", font: UIFont.systemFont(ofSize: 20))
+        }
+    }
+    
+    func showEnableRestartBtn() {
+        checkBtn.isEnabled = false
+        checkBtn.isHidden = true
+        nextBtn.isEnabled = false
+        nextBtn.isHidden = true
         
+        restartBtn.isEnabled = true
+        restartBtn.isHidden = false
+    }
+    
+    func disableAllAnsCounters() {
+        // Disabilito e nescondo la parte di risposta chiusa
+        firstAns.isHidden = true
+        firstAns.isEnabled = false
+        secAns.isHidden = true
+        secAns.isEnabled = false
+        thirdAns.isHidden = true
+        thirdAns.isEnabled = false
+        fourthAns.isHidden = true
+        fourthAns.isEnabled = false
+        
+        //Disabilito la parte di risposta aperta
+        openAns.isHidden = true
+        openAns.isEnabled = false
+        
+        scoreLab.isHidden = true
+        scoreLab.isEnabled = false
+        numbQstLab.isHidden = true
+        numbQstLab.isEnabled = false
+        
+        
+    }
+    
+    func enableScoreQstLab() {
+        scoreLab.isHidden = false
+        scoreLab.isEnabled = true
+        numbQstLab.isHidden = false
+        numbQstLab.isEnabled = true
+    }
+    
+    func resetSelected() {
+        for i in 0...selected.count-1 {
+            selected[i] = false
+        }
     }
     
     func rightAnsw(_ rightAnsw: [Int]) -> Bool {
@@ -165,6 +246,7 @@ class QuestionViewController: UIViewController {
         } else if(qstAns.type == QstType.OAqst) {
             showEnabOpQstElem()
             openAns.placeholder = "Scrivi la risposta qui..."
+            openAns.text = ""
             qstLab.text = qstAns.qst
         } else {
             print("Malformed question")
@@ -172,6 +254,10 @@ class QuestionViewController: UIViewController {
     }
     
     func showEnabClQstElem() {
+        // Nascondo e disabilito il tasto centrale
+        restartBtn.isEnabled = false
+        restartBtn.isHidden = true
+        
         // Disabilito e nescondo la parte di risposta aperta
         openAns.isHidden = true
         openAns.isEnabled = false
@@ -179,15 +265,29 @@ class QuestionViewController: UIViewController {
         // Abilito la parte di risposta chiusa
         firstAns.isHidden = false
         firstAns.isEnabled = true
+        firstAns.backgroundColor = UIColor.white
         secAns.isHidden = false
         secAns.isEnabled = true
+        secAns.backgroundColor = UIColor.white
         thirdAns.isHidden = false
         thirdAns.isEnabled = true
+        thirdAns.backgroundColor = UIColor.white
         fourthAns.isHidden = false
         fourthAns.isEnabled = true
+        fourthAns.backgroundColor = UIColor.white
+        
+        // Abilito e mostro bottoni controllo e prossimo
+        checkBtn.isEnabled = true
+        checkBtn.isHidden = false
+        nextBtn.isEnabled = true
+        nextBtn.isHidden = false
     }
     
     func showEnabOpQstElem() {
+        // Nascondo e disabilito il tasto centrale
+        restartBtn.isEnabled = false
+        restartBtn.isHidden = true
+        
         // Disabilito e nescondo la parte di risposta chiusa
         firstAns.isHidden = true
         firstAns.isEnabled = false
@@ -201,6 +301,13 @@ class QuestionViewController: UIViewController {
         // Abilito quella di risposta aperta
         openAns.isHidden = false
         openAns.isEnabled = true
+        openAns.backgroundColor = UIColor.white
+        
+        // Abilito e mostro bottoni controllo e prossimo
+        checkBtn.isEnabled = true
+        checkBtn.isHidden = false
+        nextBtn.isEnabled = true
+        nextBtn.isHidden = false
     }
     
     func disableAnsCheckBtn() {
@@ -240,6 +347,13 @@ class QuestionViewController: UIViewController {
         }
     }
     
+    func unselectAllBtn() {
+        firstAns.setTitleColor(UIColor.systemBlue, for: .normal)
+        secAns.setTitleColor(UIColor.systemBlue, for: .normal)
+        thirdAns.setTitleColor(UIColor.systemBlue, for: .normal)
+        fourthAns.setTitleColor(UIColor.systemBlue, for: .normal)
+    }
+    
     func somethingSelected() -> Bool {
         for i in 0...3 {
             if(selected[i]) {
@@ -268,7 +382,7 @@ extension UIViewController {
 
 func showToast(message : String, font: UIFont) {
 
-    let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height - 150, width: 300, height: 60))
+    let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height - 170, width: 300, height: 60))
     toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
     toastLabel.textColor = UIColor.white
     toastLabel.numberOfLines = 2
@@ -279,7 +393,7 @@ func showToast(message : String, font: UIFont) {
     toastLabel.layer.cornerRadius = 10;
     toastLabel.clipsToBounds  =  true
     self.view.addSubview(toastLabel)
-    UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+    UIView.animate(withDuration: 3.0, delay: 1, options: .curveEaseOut, animations: {
          toastLabel.alpha = 0.0
     }, completion: {(isCompleted) in
         toastLabel.removeFromSuperview()

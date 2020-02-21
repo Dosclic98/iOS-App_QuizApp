@@ -138,7 +138,7 @@
                                         <rect key="frame" x="0.0" y="732" width="374" height="36"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HsF-4g-i7I" customClass="RoundButton" customModule="QuizApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="177" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="111.5" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Controlla"/>
@@ -151,8 +151,22 @@
                                                     <action selector="checkAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Apq-jB-IEj"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vff-xm-xZv" customClass="RoundButton" customModule="QuizApp" customModuleProvider="target">
+                                                <rect key="frame" x="131.5" y="0.0" width="111" height="36"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Ricomincia"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="restartAct:" destination="BYZ-38-t0r" eventType="touchUpInside" id="u5I-NM-z9i"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cT0-Gp-fxl" customClass="RoundButton" customModule="QuizApp" customModuleProvider="target">
-                                                <rect key="frame" x="197" y="0.0" width="177" height="36"/>
+                                                <rect key="frame" x="262.5" y="0.0" width="111.5" height="36"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <state key="normal" title="Prossima"/>
@@ -188,6 +202,7 @@
                         <outlet property="numbQstLab" destination="qvf-BL-4wA" id="MHw-f0-Bzi"/>
                         <outlet property="openAns" destination="7tg-6O-9ai" id="hpm-XV-aOE"/>
                         <outlet property="qstLab" destination="Pph-Bd-jYT" id="x7K-4x-Xai"/>
+                        <outlet property="restartBtn" destination="vff-xm-xZv" id="qhL-Iy-nLE"/>
                         <outlet property="scoreLab" destination="5pV-cq-wwQ" id="2R5-Ij-U6r"/>
                         <outlet property="secAns" destination="KqV-HD-NSN" id="Fn4-pI-aPc"/>
                         <outlet property="thirdAns" destination="RQv-pE-i2x" id="Xl6-g7-nCZ"/>
@@ -206,10 +221,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XSi-3b-hXO">
-                                <rect key="frame" x="40" y="358.5" width="334" height="179"/>
+                                <rect key="frame" x="40" y="368.5" width="334" height="159"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Benvenuto in QuizApp" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCC-Vu-o7r" customClass="RoundLabel" customModule="QuizApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="111"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="91"/>
                                         <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                         <nil key="textColor"/>
@@ -239,7 +254,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0c8-C1-jQD">
-                                        <rect key="frame" x="0.0" y="131" width="334" height="48"/>
+                                        <rect key="frame" x="0.0" y="111" width="334" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="Inizia"/>
                                         <connections>
