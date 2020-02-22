@@ -26,6 +26,8 @@ var correctAnsSound: SoundPlayer = SoundPlayer(named: "correctAns")
 var wrongAnsSound: SoundPlayer = SoundPlayer(named: "wrongAns")
 var finishSound: SoundPlayer = SoundPlayer(named: "finish")
 
+var originYOpenAns: CGFloat = 0
+
 var selected: [Bool] = [false, false, false, false]
 
 class QuestionViewController: UIViewController {
@@ -48,11 +50,26 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(QuestionViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(QuestionViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         setKeyboardHideTap()
         qst.qstInitializer()
         printQstNum(currQstIndx + 1)
         updateScore(currScore)
         setQstAns(qst.getQst(currQstIndx))
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        let userInfo:NSDictionary = (notification as NSNotification).userInfo! as NSDictionary
+        let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        let keyboardHeight = keyboardRectangle.height
+        originYOpenAns = openAns.frame.origin.y
+        openAns.frame.origin = CGPoint(x: openAns.frame.origin.x, y: UIScreen.main.bounds.height - (keyboardHeight + 110))
+    }
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+        openAns.frame.origin = CGPoint(x: openAns.frame.origin.x, y: originYOpenAns)
     }
     
     @IBAction func firstAnsSel(_ sender: Any) { selUnsel(0) }

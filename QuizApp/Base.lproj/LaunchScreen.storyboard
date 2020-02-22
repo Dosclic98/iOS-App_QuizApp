@@ -16,15 +16,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QuizApp" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbX-aW-2TK">
-                                <rect key="frame" x="114.5" y="418" width="185.5" height="60"/>
+                                <rect key="frame" x="80" y="418" width="254" height="60"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="hbX-aW-2TK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="Btf-DK-h8R"/>
                             <constraint firstItem="hbX-aW-2TK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="OLD-zS-mQi"/>
                             <constraint firstItem="hbX-aW-2TK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="hKC-GL-9cZ"/>
                         </constraints>
