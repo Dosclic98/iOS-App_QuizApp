@@ -9,11 +9,22 @@
 import Foundation
 import UIKit
 
+let nextErr: String = "Seleziona una risposta prima di verificare"
+let checkErr: String = "Inserisci una risposta prima di controllarla"
+let nxtBtnTxt: String = "Prossima"
+
+let qstLabFin: String = "Punteggio finale: "
+let finTxt: String = "Fine"
+let checkBefProx: String = "Controlla la domanda prima di procedere"
+let wrAnsHereHint: String = "Scrivi la risposta qui..."
+let scoreTxt: String = "Score: "
+
 var qst = Questions()
 var currQstIndx = 0
 var currScore = 0
 var correctAnsSound: SoundPlayer = SoundPlayer(named: "correctAns")
 var wrongAnsSound: SoundPlayer = SoundPlayer(named: "wrongAns")
+var finishSound: SoundPlayer = SoundPlayer(named: "finish")
 
 var selected: [Bool] = [false, false, false, false]
 
@@ -65,12 +76,12 @@ class QuestionViewController: UIViewController {
                 updateScore(currScore);
                 disableAnsCheckBtn()
             } else {
-                showToast(message: "Seleziona una risposta prima di verificare", font: UIFont.systemFont(ofSize: 20))
+                showToast(message: nextErr, font: UIFont.systemFont(ofSize: 20))
             }
         } else if(qstAns.type == QstType.OAqst) {
             let answer: String? = openAns.text
             if(answer == "") {
-                showToast(message: "Inserisci una risposta prima di controllarla", font: UIFont.systemFont(ofSize: 20))
+                showToast(message: checkErr, font: UIFont.systemFont(ofSize: 20))
             } else {
                 if(openQstRight(answer!, qstAns.answ)) {
                     currScore += 1
@@ -89,8 +100,9 @@ class QuestionViewController: UIViewController {
     
     @IBAction func restartAct(_ sender: Any) {
         enableScoreQstLab()
+        qst.shuffle()
         qstLab.backgroundColor = UIColor.white
-        nextBtn.setTitle("Prossima", for: .normal)
+        nextBtn.setTitle(nxtBtnTxt, for: .normal)
         currQstIndx = 0
         currScore = 0
         printQstNum(currQstIndx + 1)
@@ -110,18 +122,19 @@ class QuestionViewController: UIViewController {
                 showEnableRestartBtn()
                 disableAllAnsCounters()
                 qstLab.backgroundColor = UIColor.systemOrange
-                qstLab.text = "Pinteggio finale: " + String(currScore)
+                qstLab.text = qstLabFin + String(currScore)
+                finishSound.play()
             }
             else if(currQstIndx <= (qst.qstNumber() - 1)) {
                 if(currQstIndx == (qst.qstNumber() - 1)) {
-                    nextBtn.setTitle("Fine", for: .normal)
+                    nextBtn.setTitle(finTxt, for: .normal)
                 }
                 resetSelected()
                 unselectAllBtn()
                 setQstAns(qst.getQst(currQstIndx))
             }
         } else {
-            showToast(message: "Controlla la domanda prima di procedere", font: UIFont.systemFont(ofSize: 20))
+            showToast(message: checkBefProx, font: UIFont.systemFont(ofSize: 20))
         }
     }
     
@@ -205,7 +218,8 @@ class QuestionViewController: UIViewController {
     
     func openQstRight(_ answ: String,_ rightAnsw: [String]) -> Bool {
         for strAns in rightAnsw {
-            if(answ == strAns) {
+            let result: ComparisonResult = answ.compare(strAns, options: NSString.CompareOptions.caseInsensitive)
+            if(result == .orderedSame) {
                 colorAnsField(UIColor.systemGreen)
                 return true
             }
@@ -245,7 +259,7 @@ class QuestionViewController: UIViewController {
             fourthAns.setTitle(qstAns.answ[3], for: .normal)
         } else if(qstAns.type == QstType.OAqst) {
             showEnabOpQstElem()
-            openAns.placeholder = "Scrivi la risposta qui..."
+            openAns.placeholder = wrAnsHereHint
             openAns.text = ""
             qstLab.text = qstAns.qst
         } else {
@@ -368,7 +382,7 @@ class QuestionViewController: UIViewController {
     }
     
     func updateScore(_ score: Int) {
-        scoreLab.text = "Score: " + String(score)
+        scoreLab.text = scoreTxt + String(score)
     }
     
     func setKeyboardHideTap() {

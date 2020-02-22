@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4601807223FDCBF600F129BB /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4601807123FDCBF600F129BB /* QuestionsViewController.swift */; };
 		4601807423FDE20A00F129BB /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4601807323FDE20A00F129BB /* RoundButton.swift */; };
+		46024B472401330A00382608 /* finish.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 46024B462401330A00382608 /* finish.mp3 */; };
 		46065413240046E800082B39 /* correctAns.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 46065412240046E800082B39 /* correctAns.mp3 */; };
 		460654152400470C00082B39 /* wrongAns.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 460654142400470C00082B39 /* wrongAns.mp3 */; };
 		460654172400477700082B39 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460654162400477700082B39 /* SoundPlayer.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		4601807123FDCBF600F129BB /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		4601807323FDE20A00F129BB /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		46024B462401330A00382608 /* finish.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finish.mp3; sourceTree = "<group>"; };
 		46065412240046E800082B39 /* correctAns.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correctAns.mp3; sourceTree = "<group>"; };
 		460654142400470C00082B39 /* wrongAns.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrongAns.mp3; sourceTree = "<group>"; };
 		460654162400477700082B39 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				46065412240046E800082B39 /* correctAns.mp3 */,
 				460654142400470C00082B39 /* wrongAns.mp3 */,
+				46024B462401330A00382608 /* finish.mp3 */,
 			);
 			path = SoundEffects;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				460654152400470C00082B39 /* wrongAns.mp3 in Resources */,
+				46024B472401330A00382608 /* finish.mp3 in Resources */,
 				46065413240046E800082B39 /* correctAns.mp3 in Resources */,
 				46FB500023FD84F200AB50EE /* LaunchScreen.storyboard in Resources */,
 				46FB4FFD23FD84F200AB50EE /* Assets.xcassets in Resources */,
@@ -331,6 +335,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8MZGL7TSL9;
 				INFOPLIST_FILE = QuizApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -349,6 +354,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8MZGL7TSL9;
 				INFOPLIST_FILE = QuizApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
