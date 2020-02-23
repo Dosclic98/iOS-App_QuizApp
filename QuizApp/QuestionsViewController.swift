@@ -27,6 +27,7 @@ var wrongAnsSound: SoundPlayer = SoundPlayer(named: "wrongAns")
 var finishSound: SoundPlayer = SoundPlayer(named: "finish")
 
 var originYOpenAns: CGFloat = 0
+var yIsSet: Bool = false
 
 var selected: [Bool] = [false, false, false, false]
 
@@ -64,12 +65,18 @@ class QuestionViewController: UIViewController {
         let keyboardFrame:NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
         let keyboardRectangle = keyboardFrame.cgRectValue
         let keyboardHeight = keyboardRectangle.height
-        originYOpenAns = openAns.frame.origin.y
+        if(!yIsSet) {
+            originYOpenAns = openAns.frame.origin.y
+            yIsSet = true
+        }
+        // print("Show: \(originYOpenAns)")
         openAns.frame.origin = CGPoint(x: openAns.frame.origin.x, y: UIScreen.main.bounds.height - (keyboardHeight + 110))
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
         openAns.frame.origin = CGPoint(x: openAns.frame.origin.x, y: originYOpenAns)
+        yIsSet = false
+        // print("Hide: \(originYOpenAns)")
     }
     
     @IBAction func firstAnsSel(_ sender: Any) { selUnsel(0) }
