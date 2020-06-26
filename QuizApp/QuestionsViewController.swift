@@ -69,14 +69,12 @@ class QuestionViewController: UIViewController {
             originYOpenAns = openAns.frame.origin.y
             yIsSet = true
         }
-        // print("Show: \(originYOpenAns)")
         openAns.frame.origin = CGPoint(x: openAns.frame.origin.x, y: UIScreen.main.bounds.height - (keyboardHeight + 110))
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
         openAns.frame.origin = CGPoint(x: openAns.frame.origin.x, y: originYOpenAns)
         yIsSet = false
-        // print("Hide: \(originYOpenAns)")
     }
     
     @IBAction func firstAnsSel(_ sender: Any) { selUnsel(0) }
