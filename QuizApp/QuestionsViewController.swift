@@ -101,7 +101,7 @@ class QuestionViewController: UIViewController {
                 showToast(message: nextErr, font: UIFont.systemFont(ofSize: 20))
             }
         } else if(qstAns.type == QstType.OAqst) {
-            let answer: String? = openAns.text
+            let answer: String? = openAns.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             if(answer == "") {
                 showToast(message: checkErr, font: UIFont.systemFont(ofSize: 20))
             } else {
