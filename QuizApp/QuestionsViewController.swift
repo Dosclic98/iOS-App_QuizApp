@@ -358,28 +358,44 @@ class QuestionViewController: UIViewController {
     }
     
     func selUnsel(_ index: Int) {
-        if(!selected[index]) {
+        let currQst = qst.getQst(currQstIndx)
+        if(currQst.type == QstType.MAqst) {
+            if(!selected[index]) {
+                selected[index] = true
+                selectBtn(index)
+            } else {
+                selected[index] = false
+                unselectBtn(index)
+            }
+        } else if(currQst.type == QstType.SAqst) {
+            resetSelected()
+            unselectAllBtn()
             selected[index] = true
-            if(index == 0) {
-                firstAns.setTitleColor(UIColor.systemOrange, for: .normal)
-            } else if(index == 1) {
-                secAns.setTitleColor(UIColor.systemOrange, for: .normal)
-            } else if(index == 2) {
-                thirdAns.setTitleColor(UIColor.systemOrange, for: .normal)
-            } else if(index == 3) {
-                fourthAns.setTitleColor(UIColor.systemOrange, for: .normal)
-            }
-        } else {
-            selected[index] = false
-            if(index == 0) {
-                firstAns.setTitleColor(UIColor.systemBlue, for: .normal)
-            } else if(index == 1) {
-                secAns.setTitleColor(UIColor.systemBlue, for: .normal)
-            } else if(index == 2) {
-                thirdAns.setTitleColor(UIColor.systemBlue, for: .normal)
-            } else if(index == 3) {
-                fourthAns.setTitleColor(UIColor.systemBlue, for: .normal)
-            }
+            selectBtn(index)
+        }
+    }
+    
+    func selectBtn(_ index: Int) {
+        if(index == 0) {
+            firstAns.setTitleColor(UIColor.systemOrange, for: .normal)
+        } else if(index == 1) {
+            secAns.setTitleColor(UIColor.systemOrange, for: .normal)
+        } else if(index == 2) {
+            thirdAns.setTitleColor(UIColor.systemOrange, for: .normal)
+        } else if(index == 3) {
+            fourthAns.setTitleColor(UIColor.systemOrange, for: .normal)
+        }
+    }
+    
+    func unselectBtn(_ index: Int) {
+        if(index == 0) {
+            firstAns.setTitleColor(UIColor.systemBlue, for: .normal)
+        } else if(index == 1) {
+            secAns.setTitleColor(UIColor.systemBlue, for: .normal)
+        } else if(index == 2) {
+            thirdAns.setTitleColor(UIColor.systemBlue, for: .normal)
+        } else if(index == 3) {
+            fourthAns.setTitleColor(UIColor.systemBlue, for: .normal)
         }
     }
     
